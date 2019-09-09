@@ -17,14 +17,10 @@ const app = express()
 
 // All middleware functions
 
-// Parse request body
-app.use(bodyParser.urlencoded({ extended: true }))
 // Serve static files, like CSS and browser JS
 app.use(express.static(path.join(__dirname, 'public')))
-// Prepend a path to these routes
-app.use('/admin', adminRoutes)
-// But not these
-app.use(shopRoutes)
+// Routes file
+app.use(routes)
 // Fall back to sending a 404
 app.use((req, res, next) => {
   res.status(404).sendFile(path.join(__dirname, 'views', '404.html'))
